@@ -1,9 +1,11 @@
 import datetime
 import hashlib
 import hmac
-import requests
 import time
 from decimal import Decimal
+
+import requests
+import six
 
 _API_URL = 'https://www.bitstamp.net/api/'
 
@@ -78,7 +80,7 @@ class APIPrivateCall(APICall):
         nonce = self._get_nonce()
         message = nonce + self.client_id + self.api_key
         signature = hmac.new(
-            self.api_secret, msg=message, digestmod=hashlib.sha256)
+            six.ensure_binary(self.api_secret), msg=six.ensure_binary(message), digestmod=hashlib.sha256)
         signature = signature.hexdigest().upper()
         params.update({
             'key': self.api_key, 'signature': signature, 'nonce': nonce

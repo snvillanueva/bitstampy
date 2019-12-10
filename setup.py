@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='bitstampy',
-    version='0.0.9',
+    version='0.0.10',
     author='https://github.com/unwitting',
     author_email='jackprestonuk@gmail.com',
     packages=['bitstampy'],
@@ -18,7 +18,11 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
         'Topic :: Internet :: WWW/HTTP'
     ],
-    install_requires=['requests']
+    install_requires=[
+        'requests',
+        'six',
+    ]
 )
